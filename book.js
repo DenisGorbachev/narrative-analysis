@@ -653,35 +653,36 @@ function playground_text(playground) {
   })
 
   /* Add social links */
-  const sidebarList = document.querySelector('.sidebar-scrollbox > .chapter')
-  // const affix = document.createElement('li')
-  // affix.textContent = '&nbsp'
-  // affix.classList.add('chapter-item expanded affix')
-  // sidebarList.append(affix)
-  const socials = [
-    // { name: 'Twitter', link: 'https://twitter.com/Coliquidity' },
-    // { name: 'Anchor Podcasts', link: 'https://anchor.fm/Coliquidity' },
-    // { name: 'Medium', link: 'https://coliquidity.medium.com/' },
-    // { name: 'GitHub', link: 'https://github.com/Coliquidity' },
-    // { name: 'Discord', link: 'https://discord.gg/vxjTVeesWG' },
-    // { name: 'LinkedIn', link: 'https://www.linkedin.com/company/coliquidity' },
-    // { name: 'Reddit', link: 'https://www.reddit.com/r/Coliquidity' },
-  ]
-  const socialsTitle = document.createElement('li')
-  socialsTitle.textContent = 'Community'
-  socialsTitle.classList.add('part-title')
-  sidebarList.append(socialsTitle)
+  // const sidebarList = document.querySelector('.sidebar-scrollbox > .chapter')
+  // // const affix = document.createElement('li')
+  // // affix.textContent = '&nbsp'
+  // // affix.classList.add('chapter-item expanded affix')
+  // // sidebarList.append(affix)
+  // const socials = [
+  //   // { name: 'Twitter', link: 'https://twitter.com/Coliquidity' },
+  //   // { name: 'Anchor Podcasts', link: 'https://anchor.fm/Coliquidity' },
+  //   // { name: 'Medium', link: 'https://coliquidity.medium.com/' },
+  //   // { name: 'GitHub', link: 'https://github.com/Coliquidity' },
+  //   // { name: 'Discord', link: 'https://discord.gg/vxjTVeesWG' },
+  //   // { name: 'LinkedIn', link: 'https://www.linkedin.com/company/coliquidity' },
+  //   // { name: 'Reddit', link: 'https://www.reddit.com/r/Coliquidity' },
+  // ]
+  // const socialsTitle = document.createElement('li')
+  // socialsTitle.textContent = 'Community'
+  // socialsTitle.classList.add('part-title')
+  // sidebarList.append(socialsTitle)
+  //
+  // socials.forEach((item) => {
+  //   const li = document.createElement('li')
+  //   const a = document.createElement('a')
+  //   li.classList.add('chapter-item', 'expanded')
+  //   a.href = item.link
+  //   a.textContent = item.name
+  //   a.setAttribute('target', '_blank')
+  //   sidebarList.append(li)
+  //   li.append(a)
+  // })
 
-  socials.forEach((item) => {
-    const li = document.createElement('li')
-    const a = document.createElement('a')
-    li.classList.add('chapter-item', 'expanded')
-    a.href = item.link
-    a.textContent = item.name
-    a.setAttribute('target', '_blank')
-    sidebarList.append(li)
-    li.append(a)
-  })
 })();
 
 (function clipboard() {

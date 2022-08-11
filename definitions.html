@@ -3,9 +3,8 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title></title>
-                        <base href="/">
-        
+        <title>Definitions - Narrative analysis</title>
+                
 
         <!-- Custom HTML head -->
         
@@ -83,7 +82,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><li class="part-title">Main</li><li class="chapter-item expanded "><a href="overview.html"><strong aria-hidden="true">1.</strong> Overview</a></li><li class="chapter-item expanded "><a href="definitions.html"><strong aria-hidden="true">2.</strong> Definitions</a></li><li class="chapter-item expanded "><a href="why-supply.draft.html"><strong aria-hidden="true">3.</strong> Why supply?</a></li><li class="chapter-item expanded affix "><li class="part-title">Narratives</li><li class="chapter-item expanded "><a href="narratives/supply-shock.html"><strong aria-hidden="true">4.</strong> Supply shock</a></li><li class="chapter-item expanded "><a href="narratives/comparison.html"><strong aria-hidden="true">5.</strong> Comparison</a></li><li class="chapter-item expanded "><a href="narratives/dividends.html"><strong aria-hidden="true">6.</strong> Dividends</a></li><li class="chapter-item expanded "><a href="narratives/liquidation.html"><strong aria-hidden="true">7.</strong> Liquidation</a></li><li class="chapter-item expanded affix "><li class="part-title">Drafts</li><li class="chapter-item expanded "><a href="how-to-trade.html"><strong aria-hidden="true">8.</strong> How to trade</a></li><li class="chapter-item expanded "><a href="the-big-short.draft.html"><strong aria-hidden="true">9.</strong> The Big Short</a></li><li class="chapter-item expanded "><a href="when-to-close.html"><strong aria-hidden="true">10.</strong> When to close the position?</a></li><li class="chapter-item expanded "><a href="how-to-size.html"><strong aria-hidden="true">11.</strong> How to size the position?</a></li><li class="chapter-item expanded "><a href="how-do-traders-make-decisions.html"><strong aria-hidden="true">12.</strong> How do traders make decisions?</a></li><li class="chapter-item expanded "><a href="open-questions.html"><strong aria-hidden="true">13.</strong> Open questions</a></li></ol>            </div>
+                <ol class="chapter"><li class="chapter-item expanded affix "><li class="part-title">Main</li><li class="chapter-item expanded "><a href="overview.html"><strong aria-hidden="true">1.</strong> Overview</a></li><li class="chapter-item expanded "><a href="definitions.html" class="active"><strong aria-hidden="true">2.</strong> Definitions</a></li><li class="chapter-item expanded "><a href="why-supply.draft.html"><strong aria-hidden="true">3.</strong> Why supply?</a></li><li class="chapter-item expanded affix "><li class="part-title">Narratives</li><li class="chapter-item expanded "><a href="narratives/supply-shock.html"><strong aria-hidden="true">4.</strong> Supply shock</a></li><li class="chapter-item expanded "><a href="narratives/comparison.html"><strong aria-hidden="true">5.</strong> Comparison</a></li><li class="chapter-item expanded "><a href="narratives/dividends.html"><strong aria-hidden="true">6.</strong> Dividends</a></li><li class="chapter-item expanded "><a href="narratives/liquidation.html"><strong aria-hidden="true">7.</strong> Liquidation</a></li><li class="chapter-item expanded affix "><li class="part-title">Drafts</li><li class="chapter-item expanded "><a href="how-to-trade.html"><strong aria-hidden="true">8.</strong> How to trade</a></li><li class="chapter-item expanded "><a href="the-big-short.draft.html"><strong aria-hidden="true">9.</strong> The Big Short</a></li><li class="chapter-item expanded "><a href="when-to-close.html"><strong aria-hidden="true">10.</strong> When to close the position?</a></li><li class="chapter-item expanded "><a href="how-to-size.html"><strong aria-hidden="true">11.</strong> How to size the position?</a></li><li class="chapter-item expanded "><a href="how-do-traders-make-decisions.html"><strong aria-hidden="true">12.</strong> How do traders make decisions?</a></li><li class="chapter-item expanded "><a href="open-questions.html"><strong aria-hidden="true">13.</strong> Open questions</a></li></ol>            </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
 
@@ -121,7 +120,10 @@
                                                                         <a href="https://github.com/{org}/{repo}" title="Git repository" aria-label="Git repository">
                             <i id="git-repository-button" class="fa fa-github"></i>
                         </a>
-                                                
+                                                                        <a href="https://github.com/{org}/{repo}/edit/main/doc/definitions.md" title="Suggest an edit" aria-label="Suggest an edit">
+                            <i id="git-edit-button" class="fa fa-edit"></i>
+                        </a>
+                        
                     </div>
                 </div>
 
@@ -147,14 +149,91 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="document-not-found-404"><a class="header" href="#document-not-found-404">Document not found (404)</a></h1>
-<p>This URL is invalid, sorry. Please use the navigation bar or search to continue.</p>
+                        <h1 id="definitions"><a class="header" href="#definitions">Definitions</a></h1>
+<h2 id="portfolio"><a class="header" href="#portfolio">Portfolio</a></h2>
+<p>Type: a list of <a href="#bag">bags</a></p>
+<h2 id="portfolio-chunk"><a class="header" href="#portfolio-chunk">Portfolio chunk</a></h2>
+<p>Type: a structure with the following fields:</p>
+<ul>
+<li>bags: List of <a href="#bag">bags</a></li>
+<li>Proof of bags not being empty</li>
+<li>Proof of bags being less than or equal to portfolio</li>
+</ul>
+<h2 id="bag"><a class="header" href="#bag">Bag</a></h2>
+<p>Type: a structure with the following fields:</p>
+<ul>
+<li><a href="#amount">Amount</a></li>
+<li><a href="#asset">Asset</a></li>
+</ul>
+<h2 id="news"><a class="header" href="#news">News</a></h2>
+<p>Meaning: an update of the world state in raw format</p>
+<p>Type: text (natural language)</p>
+<h2 id="event"><a class="header" href="#event">Event</a></h2>
+<p>Meaning: an update of the world state in precise format</p>
+<p>(incomplete)</p>
+<p>Options:</p>
+<ul>
+<li>A list of supply predicates (because price is a ratio of two supplies)</li>
+</ul>
+<p>Filters:</p>
+<ul>
+<li>Must encode the influence on supply</li>
+</ul>
+<h2 id="supply"><a class="header" href="#supply">Supply</a></h2>
+<p>Synonym of &quot;<a href="#amount">Amount</a>&quot;.</p>
+<h2 id="amount"><a class="header" href="#amount">Amount</a></h2>
+<p>Meaning: normalized amount of asset without decimals (example: &quot;10.4 USD&quot; is written as &quot;1040 USD supply&quot;, because USD has 2 decimals)</p>
+<p>Type: natural number (important: see <a href="#get-amount-type">Get amount type</a>)</p>
+<p>Notes:</p>
+<ul>
+<li>Important: supply doesn't have decimals, so we need to convert &quot;displayed amounts&quot; in the events to &quot;normalized amounts&quot; (multiply by <code>10 ^ asset.decimals</code>)</li>
+</ul>
+<h2 id="trade-plan"><a class="header" href="#trade-plan">Trade plan</a></h2>
+<p>Type: a structure with the following fields:</p>
+<ul>
+<li>amount: <a href="#amount">Amount</a> (of &quot;source&quot; asset)</li>
+<li>source: <a href="#asset">Asset</a></li>
+<li>target: <a href="#asset">Asset</a></li>
+</ul>
+<h2 id="asset"><a class="header" href="#asset">Asset</a></h2>
+<p>Type: a structure with the following fields:</p>
+<ul>
+<li>name: String</li>
+<li>decimals: Natural number</li>
+</ul>
+<h2 id="sizer"><a class="header" href="#sizer">Sizer</a></h2>
+<p>Meaning: a way to determine what parts of your current portfolio you should trade for another asset</p>
+<p>Type: a function from <a href="#portfolio">portfolio</a> to <a href="#portfolio-chunk">portfolio chunk</a></p>
+<h2 id="get-amount-type"><a class="header" href="#get-amount-type">Get amount type</a></h2>
+<p>Options:</p>
+<ul>
+<li>Natural number</li>
+<li>Decimal number with fixed precision</li>
+<li>Decimal number with dynamic precision</li>
+<li>Floating point number</li>
+<li>Bignumber</li>
+</ul>
+<p>Filters:</p>
+<ul>
+<li>Must be precise (calculations must not lose data)</li>
+</ul>
+<p>Sorters:</p>
+<ul>
+<li>Should be simple</li>
+</ul>
+<p>Decision: Natural number</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
+                                                    <a rel="prev" href="overview.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
                         
+                                                    <a rel="next" href="why-supply.draft.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
                         
                         <div style="clear: both"></div>
                     </nav>
@@ -162,7 +241,13 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                                    <a rel="prev" href="overview.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
                 
+                                    <a rel="next" href="why-supply.draft.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
                             </nav>
 
         </div>
