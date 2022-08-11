@@ -1,9 +1,9 @@
 [book]
-authors = ["Narrative Analysis"]
+authors = ["Denis Gorbachev"]
 language = "en"
 multilingual = true
 src = "doc"
-title = "Narrative Analysis"
+title = "Narrative analysis"
 
 [build]
 create-missing = false
