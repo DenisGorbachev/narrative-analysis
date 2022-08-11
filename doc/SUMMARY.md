@@ -6,7 +6,7 @@
 
 - [Overview](overview.md)
 - [Definitions](definitions.md)
-- [Why supply?](why-supply.draft.md)
+- [Why supply?](why-supply.md)
 
 # Narratives
 
