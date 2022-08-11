@@ -1,17 +1,67 @@
 {
-  "name": "zenbox-docs",
+  "name": "narrative-analysis",
   "version": "1.0.0",
-  "main": "index.js",
-  "repository": "git@github.com:DenisGorbachev/zenbox-docs.git",
+  "repository": "git@github.com:DenisGorbachev/narrative-analysis.git",
   "author": "Denis Gorbachev <829578+DenisGorbachev@users.noreply.github.com>",
   "license": "MIT",
+  "type": "module",
   "scripts": {
     "dev": "mdbook serve",
-    "lint": "yarn lint:markdown",
-    "lint:markdown": "markdownlint --fix --ignore node_modules **/*.md"
+    "build": "mdbook build",
+    "lint:all": "yarn lint:code:all && yarn lint:markdown:all",
+    "lint:code": "eslint --fix --ignore-path .gitignore --max-warnings=0",
+    "lint:code:all": "yarn lint:code .",
+    "lint:markdown:all": "yarn lint:markdown:text . && yarn lint:markdown:links .",
+    "lint:markdown:text": "markdownlint --fix --ignore-path .gitignore",
+    "lint:markdown:links": "remark --use remark-validate-links --use remark-lint-no-dead-urls --ignore-path .gitignore -q -f",
+    "typecheck": "tsc --noEmit",
+    "typecheck:files": "tsc-files --noEmit src/util/src/*.d.ts",
+    "test": "yarn node --experimental-vm-modules $(yarn bin jest) --setupFiles dotenv/config --all",
+    "test:watch": "yarn test --watchAll --bail",
+    "test:nock:off": "set NOCK_OFF=true NOCK_BACK_MODE=wild && yarn test",
+    "test:nock:record": "set NOCK_BACK_MODE=record && yarn test",
+    "test:warnings": "yarn node --trace-warnings --experimental-vm-modules $(yarn bin jest) --setupFiles dotenv/config --no-cache",
+    "test:warnings:watch": "yarn test:warnings --watchAll --bail",
+    "postinstall": "lefthook install"
+  },
+  "engines": {
+    "node": "^14.17.0"
   },
   "dependencies": {
-    "markdown-link-check": "^3.9.0",
-    "markdownlint-cli": "^0.30.0"
-  }
+    "@swc/core": "^1.2.196",
+    "@types/lodash-es": "^4.17.6",
+    "dotenv": "^16.0.1",
+    "lodash-es": "^4.17.21",
+    "markdown-link-check": "^3.10.2",
+    "markdown-table": "^3.0.2",
+    "markdownlint-cli": "^0.31.1",
+    "random": "^3.0.6",
+    "ts-node": "^10.8.0",
+    "typescript": "^4.7.2",
+    "yargs": "^17.5.1",
+    "zod": "latest"
+  },
+  "devDependencies": {
+    "@arkweid/lefthook": "^0.7.7",
+    "@babel/eslint-parser": "^7.15.7",
+    "@babel/eslint-plugin": "^7.13.15",
+    "@types/lodash": "^4.14.182",
+    "@types/yargs": "^17.0.10",
+    "@typescript-eslint/eslint-plugin": "^5.27.0",
+    "@typescript-eslint/parser": "^5.27.0",
+    "babel-eslint": "^9.0.0",
+    "eslint": "^7.31.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-plugin-html": "^5.0.3",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-react": "^7.26.1",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "jest": "^28.1.0",
+    "remark-cli": "^10.0.1",
+    "remark-lint-no-dead-urls": "^1.1.0",
+    "remark-validate-links": "^11.0.2",
+    "ts-jest": "^28.0.4"
+  },
+  "packageManager": "yarn@3.2.1"
 }

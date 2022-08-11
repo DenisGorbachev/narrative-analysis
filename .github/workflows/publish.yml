@@ -13,6 +13,8 @@ jobs:
       group: ${{ github.workflow }}-${{ github.ref }}
     steps:
       - uses: actions/checkout@v2
+        with:
+          submodules: true
 
       - name: Setup mdBook
         uses: peaceiris/actions-mdbook@v1
@@ -20,11 +22,17 @@ jobs:
           mdbook-version: '0.4.10'
           # mdbook-version: 'latest'
 
-      - run: mdbook build
+      - run: git submodule foreach yarn install
+
+      - run: yarn install
+
+      - run: yarn build
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         if: ${{ github.ref == 'refs/heads/main' }}
         with:
-          github_token: ${{ secrets.GH_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./book
+          allow_empty_commit: true
+          cname: docs.coliquidity.com
