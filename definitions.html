@@ -159,15 +159,57 @@
 <li>Proof of bags not being empty</li>
 <li>Proof of bags being less than or equal to portfolio</li>
 </ul>
+<h2 id="borrowable-portfolio"><a class="header" href="#borrowable-portfolio">Borrowable portfolio</a></h2>
+<p>Type: <a href="#portfolio">portfolio</a> that could be borrowed by locking an existing <a href="#portfolio-chunk">portfolio chunk</a></p>
 <h2 id="bag"><a class="header" href="#bag">Bag</a></h2>
 <p>Type: a structure with the following fields:</p>
 <ul>
 <li><a href="#amount">Amount</a></li>
 <li><a href="#asset">Asset</a></li>
 </ul>
-<h2 id="news"><a class="header" href="#news">News</a></h2>
+<h2 id="channel"><a class="header" href="#channel">Channel</a></h2>
+<p>Meaning: a source of <a href="#message">messages</a></p>
+<p>Type: a structure with the following fields:</p>
+<ul>
+<li>Id</li>
+<li>Url (optional)</li>
+<li>Followers count (optional)</li>
+<li>Trade power: probability distribution of aggregate <a href="#borrowable-portfolio">borrowable portfolio</a> (optional)</li>
+<li>Share power: probability distribution of aggregate <a href="#channel">channels</a> (optional)
+<ul>
+<li>Options
+<ul>
+<li>list of pairs of (channel, probability distribution)</li>
+<li>probability distribution of list of channels</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Getter: a function from the World monad to a list of <a href="#message">messages</a></li>
+</ul>
+<p>Examples:</p>
+<ul>
+<li>Twitter account</li>
+<li>Twitter feed (aggregate channel)</li>
+<li>Push notifications on a personal phone</li>
+</ul>
+<p>Notes:</p>
+<ul>
+<li>Channels never push messages, only allow the user to pull the messages explicitly
+<ul>
+<li>When an app sends a push notification, we model it as &quot;the app copies the message from its internal database into the user's phone database&quot;</li>
+</ul>
+</li>
+<li>Channels may have different amount of traders with different margin preferences (represented by <code>Power</code> field)</li>
+</ul>
+<h2 id="message"><a class="header" href="#message">Message</a></h2>
 <p>Meaning: an update of the world state in raw format</p>
 <p>Type: text (natural language)</p>
+<h2 id="derivative-message"><a class="header" href="#derivative-message">Derivative message</a></h2>
+<p>Meaning: <a href="#message">a message</a> that has the same <a href="#info">info</a> as the earlier message (called a &quot;parent message&quot;)</p>
+<h2 id="info"><a class="header" href="#info">Info</a></h2>
+<p>Meaning: the actual information extracted from a <a href="#message">message</a></p>
+<p>Important: info is equal to <a href="#event">event</a> (we say that &quot;messages describe events&quot;)</p>
 <h2 id="event"><a class="header" href="#event">Event</a></h2>
 <p>Meaning: an update of the world state in precise format</p>
 <p>(incomplete)</p>
@@ -186,7 +228,7 @@
 <p>Type: natural number (important: see <a href="#get-amount-type">Get amount type</a>)</p>
 <p>Notes:</p>
 <ul>
-<li>Important: supply doesn't have decimals, so we need to convert &quot;displayed amounts&quot; in the events to &quot;normalized amounts&quot; (multiply by <code>10 ^ asset.decimals</code>)</li>
+<li>Important: supply doesn't have decimals, so we need to convert &quot;displayed amounts&quot; in the messages to &quot;normalized amounts&quot; (multiply by <code>10 ^ asset.decimals</code>)</li>
 </ul>
 <h2 id="trade-plan"><a class="header" href="#trade-plan">Trade plan</a></h2>
 <p>Type: a structure with the following fields:</p>
@@ -222,6 +264,37 @@
 <li>Should be simple</li>
 </ul>
 <p>Decision: Natural number</p>
+<h2 id="get-virality-probability"><a class="header" href="#get-virality-probability">Get virality probability</a></h2>
+<p>Options:</p>
+<ul>
+<li>Difference between the current <a href="#message-spread">message spread</a> &amp; the ideal <a href="#message-spread">message spread</a>
+<ul>
+<li>Must normalize by total message count over all channels
+<ul>
+<li>Otherwise we'll see ever-increasing message counts, just because a certain social network is becoming more popular</li>
+</ul>
+</li>
+<li>Get the ideal message spread from historical data</li>
+</ul>
+</li>
+</ul>
+<p>Notes:</p>
+<ul>
+<li>Virality can be determined by:
+<ul>
+<li>Message info (how it is interpreted by the population)</li>
+<li>Message spread (how it spreads within the population)</li>
+</ul>
+</li>
+</ul>
+<h2 id="message-spread"><a class="header" href="#message-spread">Message spread</a></h2>
+<p>Notes:</p>
+<h2 id="sentiment-coherence"><a class="header" href="#sentiment-coherence">Sentiment coherence</a></h2>
+<p>Type: squared difference between sentiments of two messages</p>
+<h2 id="radioactivity"><a class="header" href="#radioactivity">Radioactivity</a></h2>
+<p>Type: a probability of a specific message being traded upon by a specific person</p>
+<h2 id="virality"><a class="header" href="#virality">Virality</a></h2>
+<p>Type: a probability of a specific message being shared by a specific person</p>
 
                     </main>
 
