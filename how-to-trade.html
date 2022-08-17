@@ -159,6 +159,49 @@
 </ul>
 <p>Output: <a href="#trading-strategy">trading strategy</a></p>
 <p>Type: (native)</p>
+<p>Notes:</p>
+<ul>
+<li>People make decisions based on narratives</li>
+<li>Narratives are logical predicates
+<ul>
+<li>They may or may not be true (it doesn't matter: if people think the narrative is valid, or if they have an incentive to spread it, they will spread it)</li>
+</ul>
+</li>
+<li>Hypotheses:
+<ul>
+<li>A: We can predict people's actions from the narrative content</li>
+<li>B: We can predict people's actions from the narrative spread form</li>
+</ul>
+</li>
+</ul>
+<h3 id="get-trading-strategy-based-on-narrative-content"><a class="header" href="#get-trading-strategy-based-on-narrative-content">Get trading strategy based on narrative content</a></h3>
+<p>Notes:</p>
+<ul>
+<li>&quot;Warren Buffet style&quot; hypothesis: if we understand the business domain well enough, we can evaluate the narrative content well enough</li>
+</ul>
+<h3 id="get-trading-strategy-based-on-narrative-spread-form"><a class="header" href="#get-trading-strategy-based-on-narrative-spread-form">Get trading strategy based on narrative spread form</a></h3>
+<p>Notes:</p>
+<ul>
+<li>Hypothesis: if two people like one narrative and the distance between two people is &quot;large&quot;, then the probability of other people liking this narrative is &quot;large&quot;
+<ul>
+<li>(a b : Person) -&gt; (d : Distance a b) -&gt; (n : Narrative) -&gt; (ma : PositiveMention a n) -&gt; (mb : PositiveMention b n) -&gt; (Independent ma mb) -&gt; ?</li>
+</ul>
+</li>
+</ul>
+<p>Options:</p>
+<ul>
+<li>Buy the <a href="definitions.html#fundamental-leader">fundamental leader</a> of the most recent cycle
+<ul>
+<li>Design
+<ul>
+<li>Get the fundamental leaders of the most recent cycle</li>
+<li>Wait until they fall below 80%</li>
+<li>Buy</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 <h3 id="trading-strategy"><a class="header" href="#trading-strategy">Trading strategy</a></h3>
 <p>Type: a function from a list of <a href="definitions.html#event">events</a> and a <a href="definitions.html#portfolio">portfolio</a> to a list of <a href="definitions.html#trade-plan">trade plans</a>.</p>
 <p>Filters:</p>
@@ -201,24 +244,6 @@
 <h3 id="whale-policy"><a class="header" href="#whale-policy">Whale policy</a></h3>
 <p>Type: function from state to list of pairs (action, probability)</p>
 <p>Thesis:</p>
-<ul>
-<li>People make decisions based on narratives</li>
-<li>Narratives are logical predicates
-<ul>
-<li>They may or may not be true (it doesn't matter: if people think the narrative is valid, or if they have an incentive to spread it, they will spread it)</li>
-</ul>
-</li>
-<li>Hypothesis: we can predict people's actions from (either the narrative content or the narrative spread form)
-<ul>
-<li>Hypothesis: if two people like one narrative and the distance between two people is &quot;large&quot;, then the probability of other people liking this narrative is &quot;large&quot;
-<ul>
-<li>(a b : Person) -&gt; (d : Distance a b) -&gt; (n : Narrative) -&gt; (ma : PositiveMention a n) -&gt; (mb : PositiveMention b n) -&gt; (Independent ma mb) -&gt; ?</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Another hypothesis (&quot;Warren Buffet style&quot;): if we understand the business domain well enough, we can evaluate the narrative content well enough</li>
-</ul>
 <p>Notes:</p>
 <ul>
 <li>Most humans have life-preserving instincts</li>
