@@ -166,3 +166,15 @@ Type: a probability of a specific message being traded upon by a specific person
 ## Virality
 
 Type: a probability of a specific message being shared by a specific person
+
+## Fundamental leader
+
+Meaning: an asset that was associated with a product that experienced high usage during the cycle.
+
+Type: Cycle -> Asset
+
+Examples:
+
+* Ethereum
+* Solana
+* Yearn
