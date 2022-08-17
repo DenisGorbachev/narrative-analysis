@@ -404,6 +404,14 @@ Basically, you're exchanging &quot;supply-at-rest&quot; (in your bank account) f
 <div style="break-before: page; page-break-before: always;"></div><h1 id="how-to-trade"><a class="header" href="#how-to-trade">How to trade</a></h1>
 <h2 id="goals"><a class="header" href="#goals">Goals</a></h2>
 <h3 id="get-trading-strategy"><a class="header" href="#get-trading-strategy">Get trading strategy</a></h3>
+<p>Inputs:</p>
+<ul>
+<li><a href="how-to-trade.html#world-model">World model</a> (skipping: it's easy to build a world model)</li>
+<li><a href="how-to-trade.html#human-policy">Human policy</a> (focusing)</li>
+</ul>
+<p>Output: <a href="how-to-trade.html#trading-strategy">trading strategy</a></p>
+<p>Type: (native)</p>
+<h3 id="trading-strategy"><a class="header" href="#trading-strategy">Trading strategy</a></h3>
 <p>Type: a function from a list of <a href="definitions.html#event">events</a> and a <a href="definitions.html#portfolio">portfolio</a> to a list of <a href="definitions.html#trade-plan">trade plans</a>.</p>
 <p>Filters:</p>
 <ul>
@@ -420,6 +428,66 @@ Basically, you're exchanging &quot;supply-at-rest&quot; (in your bank account) f
 <ul>
 <li>Calculate the &quot;balance price&quot; according to new supply data</li>
 <li>At every price higher than &quot;balance price&quot; sell some supply to maintain an equiprobable portfolio</li>
+</ul>
+</li>
+</ul>
+<h3 id="world-model"><a class="header" href="#world-model">World model</a></h3>
+<p>Meaning: a set of static actors &amp; behaviors</p>
+<p>Examples of parts of the world model:</p>
+<ul>
+<li>Uniswap contract</li>
+<li>Aave contract</li>
+<li>Wheat futures specification</li>
+<li>Laws of physics</li>
+<li>Laws of biology
+<ul>
+<li>It's impossible to maintain life without external energy</li>
+</ul>
+</li>
+</ul>
+<h3 id="human-policy"><a class="header" href="#human-policy">Human policy</a></h3>
+<p>Options:</p>
+<ul>
+<li><a href="how-to-trade.html#whale-policy">Whale policy</a></li>
+</ul>
+<h3 id="whale-policy"><a class="header" href="#whale-policy">Whale policy</a></h3>
+<p>Type: function from state to list of pairs (action, probability)</p>
+<p>Thesis:</p>
+<ul>
+<li>People make decisions based on narratives</li>
+<li>Narratives are logical predicates
+<ul>
+<li>They may or may not be true (it doesn't matter: if people think the narrative is valid, or if they have an incentive to spread it, they will spread it)</li>
+</ul>
+</li>
+<li>Hypothesis: we can predict people's actions from (either the narrative content or the narrative spread form)
+<ul>
+<li>Hypothesis: if two people like one narrative and the distance between two people is &quot;large&quot;, then the probability of other people liking this narrative is &quot;large&quot;
+<ul>
+<li>(a b : Person) -&gt; (d : Distance a b) -&gt; (n : Narrative) -&gt; (ma : PositiveMention a n) -&gt; (mb : PositiveMention b n) -&gt; (Independent ma mb) -&gt; ?</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Another hypothesis (&quot;Warren Buffet style&quot;): if we understand the business domain well enough, we can evaluate the narrative content well enough</li>
+</ul>
+<p>Notes:</p>
+<ul>
+<li>Most humans have life-preserving instincts</li>
+<li>Most humans don't change their behavior if it is &quot;profitable&quot;</li>
+<li>There are psychoviruses: propositions that can't be proven or disproven, but that predict a huge negative outcome if ignored
+<ul>
+<li>&quot;Hell&quot; (religions)</li>
+<li>&quot;Send this message to 5 friends, or you will lose money&quot;</li>
+<li>&quot;Buy Bitcoin now because there will be YUUUGE inflation&quot;</li>
+</ul>
+</li>
+<li>The psychoviruses are the strongest narratives, because they trigger fear</li>
+<li>If an asset is &quot;tainted&quot; by a negative narrative, investors will exchange this asset for a &quot;safe&quot; asset</li>
+<li>There is &quot;contagion&quot;: if an asset is &quot;tainted&quot; by a narrative, investors may sell related assets</li>
+<li>Probability of action decreases if this action was unsuccessful
+<ul>
+<li>People do it more abruptly: they continue trying multiple times, then stop doing it completely</li>
 </ul>
 </li>
 </ul>
