@@ -30,6 +30,9 @@ Notes:
     * Fire
     * Nuclear reaction
     * Avalanche ("snowball effect")
+  * Requirements
+    * Amount of produced (heat | neutrons | ?) >> Amount of consumed (heat | neutrons | ?)
+    *
 * A narrative can be "replaced" by another narrative
 * Each hit of the narrative has a non-zero probability of converting a person, who then becomes a transmitter of the narrative
   * That's why the rate of conversion is fastest at the end of the trend
