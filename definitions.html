@@ -204,12 +204,27 @@
 </ul>
 <h2 id="message"><a class="header" href="#message">Message</a></h2>
 <p>Meaning: an update of the world state in raw format</p>
-<p>Type: text (natural language)</p>
+<p>Type: structure with the following fields:</p>
+<ul>
+<li>channel : <a href="#channel">Channel</a></li>
+<li>text : string</li>
+<li>image : string (base64-encoded)</li>
+<li>timestamp : Date</li>
+</ul>
 <h2 id="derivative-message"><a class="header" href="#derivative-message">Derivative message</a></h2>
 <p>Meaning: <a href="#message">a message</a> that has the same <a href="#info">info</a> as the earlier message (called a &quot;parent message&quot;)</p>
 <h2 id="info"><a class="header" href="#info">Info</a></h2>
 <p>Meaning: the actual information extracted from a <a href="#message">message</a></p>
 <p>Important: info is equal to <a href="#event">event</a> (we say that &quot;messages describe events&quot;)</p>
+<h2 id="sentinfo"><a class="header" href="#sentinfo">Sentinfo</a></h2>
+<p>Type: a structure with the following fields:</p>
+<ul>
+<li>asset : <a href="#asset">Asset</a></li>
+<li>sentiment : <a href="#sentiment">Sentiment</a></li>
+<li>message : <a href="#message">Message</a></li>
+</ul>
+<h2 id="polydirectional"><a class="header" href="#polydirectional">Polydirectional</a></h2>
+<p>Type: a list of structures that have a <a href="#sentiment">sentiment</a> field where at least two structures have a different sentiment sign (excluding zero)</p>
 <h2 id="event"><a class="header" href="#event">Event</a></h2>
 <p>Meaning: an update of the world state in precise format</p>
 <p>(incomplete)</p>
@@ -220,6 +235,25 @@
 <p>Filters:</p>
 <ul>
 <li>Must encode the influence on supply</li>
+</ul>
+<h2 id="trader"><a class="header" href="#trader">Trader</a></h2>
+<p>Type: a structure with the following fields:</p>
+<ul>
+<li>Activation count probability distribution (how many messages the trader needs to receive in order to trade according to the narrative)
+<ul>
+<li>Fields:
+<ul>
+<li>Form: log-normal</li>
+<li>Parameters
+<ul>
+<li>Mean</li>
+<li>Standard deviation</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 <h2 id="supply"><a class="header" href="#supply">Supply</a></h2>
 <p>Synonym of &quot;<a href="#amount">Amount</a>&quot;.</p>
@@ -289,6 +323,8 @@
 </ul>
 <h2 id="message-spread"><a class="header" href="#message-spread">Message spread</a></h2>
 <p>Notes:</p>
+<h2 id="sentiment"><a class="header" href="#sentiment">Sentiment</a></h2>
+<p>Type: a floating point number in [-1; 1] range</p>
 <h2 id="sentiment-coherence"><a class="header" href="#sentiment-coherence">Sentiment coherence</a></h2>
 <p>Type: squared difference between sentiments of two messages</p>
 <h2 id="radioactivity"><a class="header" href="#radioactivity">Radioactivity</a></h2>

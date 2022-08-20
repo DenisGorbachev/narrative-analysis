@@ -155,25 +155,10 @@
 <p>Inputs:</p>
 <ul>
 <li><a href="#world-model">World model</a> (skipping: it's easy to build a world model)</li>
-<li><a href="#human-policy">Human policy</a> (focusing)</li>
+<li><a href="#trader-policy">Trader policy</a> (focusing)</li>
 </ul>
 <p>Output: <a href="#trading-strategy">trading strategy</a></p>
 <p>Type: (native)</p>
-<p>Notes:</p>
-<ul>
-<li>People make decisions based on narratives</li>
-<li>Narratives are logical predicates
-<ul>
-<li>They may or may not be true (it doesn't matter: if people think the narrative is valid, or if they have an incentive to spread it, they will spread it)</li>
-</ul>
-</li>
-<li>Hypotheses:
-<ul>
-<li>A: We can predict people's actions from the narrative content</li>
-<li>B: We can predict people's actions from the narrative spread form</li>
-</ul>
-</li>
-</ul>
 <h3 id="get-trading-strategy-based-on-narrative-content"><a class="header" href="#get-trading-strategy-based-on-narrative-content">Get trading strategy based on narrative content</a></h3>
 <p>Notes:</p>
 <ul>
@@ -212,6 +197,56 @@
 </ul>
 </li>
 <li>Must be non-empty (there must exist a history such that the trading strategy outputs a non-empty list)</li>
+<li>Must protect from &quot;quiet market&quot;
+<ul>
+<li>Example
+<ul>
+<li>History
+<ul>
+<li>An original message with a &quot;strong&quot; positive narrative is posted</li>
+<li>We open a long position</li>
+<li>Other traders don't receive the message (e.g. they are subscribed but muted the notifications, or just dismissed the message)</li>
+<li>The price doesn't change much</li>
+<li>We should exit the long position</li>
+</ul>
+</li>
+<li>Notes
+<ul>
+<li>But BTCUSD price didn't move much after the COVID relief message
+<ul>
+<li>Maybe because BTCUSD traders weren't subscribed to Fed blog</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>&quot;Must make decisions before the trends are exhausted&quot;
+<ul>
+<li>Example (bad):
+<ul>
+<li>Trading strategy takes 10 days to make a decision</li>
+<li>The trend is over in 10 days</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Must work without errors if the list of events is <a href="definitions.html#polydirectional">polydirectional</a>
+<ul>
+<li>May return an empty list of trade plans</li>
+</ul>
+</li>
+</ul>
+<p>Sorters:</p>
+<ul>
+<li>Should open both long &amp; short positions</li>
+<li>Should divide sentiment by average sentiment
+<ul>
+<li>The average sentiment is above zero, so positive news don't receive as much of attention</li>
+</ul>
+</li>
 </ul>
 <p>Ideas:</p>
 <ul>
@@ -219,6 +254,28 @@
 <ul>
 <li>Calculate the &quot;balance price&quot; according to new supply data</li>
 <li>At every price higher than &quot;balance price&quot; sell some supply to maintain an equiprobable portfolio</li>
+</ul>
+</li>
+</ul>
+<p>Options:</p>
+<ul>
+<li>First draft</li>
+</ul>
+<h3 id="trading-strategy---first-draft"><a class="header" href="#trading-strategy---first-draft">Trading strategy - First draft</a></h3>
+<ul>
+<li>Get channels</li>
+<li>Get latest messages from channel</li>
+<li>Get <a href="definitions.html#sentinfo">sentinfos</a> from messages</li>
+<li>Get current form from sentinfos</li>
+<li>Get ideal form from ?</li>
+<li>If current form matches ideal form
+<ul>
+<li>Buy</li>
+</ul>
+</li>
+<li>(condition)
+<ul>
+<li>Sell</li>
 </ul>
 </li>
 </ul>
@@ -236,7 +293,7 @@
 </ul>
 </li>
 </ul>
-<h3 id="human-policy"><a class="header" href="#human-policy">Human policy</a></h3>
+<h3 id="trader-policy"><a class="header" href="#trader-policy">Trader policy</a></h3>
 <p>Options:</p>
 <ul>
 <li><a href="#whale-policy">Whale policy</a></li>
@@ -244,7 +301,24 @@
 <h3 id="whale-policy"><a class="header" href="#whale-policy">Whale policy</a></h3>
 <p>Type: function from state to list of pairs (action, probability)</p>
 <p>Thesis:</p>
-<p>Notes:</p>
+<p>Basic notes:</p>
+<ul>
+<li>People make decisions based on narratives</li>
+<li>Narratives are logical predicates
+<ul>
+<li>They may or may not be true (it doesn't matter: if people think the narrative is valid, or if they have an incentive to spread it, they will spread it)</li>
+</ul>
+</li>
+<li>Hypotheses:
+<ul>
+<li>A: We can predict people's actions from the narrative content</li>
+<li>B: We can predict people's actions from the narrative spread form</li>
+<li>C: A + B</li>
+</ul>
+</li>
+<li>Count of messages increases probability of trading the narrative</li>
+</ul>
+<p>Extra notes:</p>
 <ul>
 <li>Most humans have life-preserving instincts</li>
 <li>Most humans don't change their behavior if it is &quot;profitable&quot;</li>
@@ -263,6 +337,18 @@
 <li>People do it more abruptly: they continue trying multiple times, then stop doing it completely</li>
 </ul>
 </li>
+</ul>
+<p>Game-theoretic situation:</p>
+<ul>
+<li>(c : Channel) -&gt; (m : Message) -&gt; (a : Asset) -&gt; In c m -&gt; Positive m a -&gt; Influential c -&gt; /-- a game-theoretic situation where you have to buy before others --/
+<ul>
+<li>A large account sends a positive message about a specific asset</li>
+</ul>
+</li>
+</ul>
+<p>Inertia:</p>
+<ul>
+<li>Some people might decide to buy an asset proportionally over time from a fixed amount of messages</li>
 </ul>
 
                     </main>

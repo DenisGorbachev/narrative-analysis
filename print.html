@@ -253,12 +253,27 @@
 </ul>
 <h2 id="message"><a class="header" href="#message">Message</a></h2>
 <p>Meaning: an update of the world state in raw format</p>
-<p>Type: text (natural language)</p>
+<p>Type: structure with the following fields:</p>
+<ul>
+<li>channel : <a href="definitions.html#channel">Channel</a></li>
+<li>text : string</li>
+<li>image : string (base64-encoded)</li>
+<li>timestamp : Date</li>
+</ul>
 <h2 id="derivative-message"><a class="header" href="#derivative-message">Derivative message</a></h2>
 <p>Meaning: <a href="definitions.html#message">a message</a> that has the same <a href="definitions.html#info">info</a> as the earlier message (called a &quot;parent message&quot;)</p>
 <h2 id="info"><a class="header" href="#info">Info</a></h2>
 <p>Meaning: the actual information extracted from a <a href="definitions.html#message">message</a></p>
 <p>Important: info is equal to <a href="definitions.html#event">event</a> (we say that &quot;messages describe events&quot;)</p>
+<h2 id="sentinfo"><a class="header" href="#sentinfo">Sentinfo</a></h2>
+<p>Type: a structure with the following fields:</p>
+<ul>
+<li>asset : <a href="definitions.html#asset">Asset</a></li>
+<li>sentiment : <a href="definitions.html#sentiment">Sentiment</a></li>
+<li>message : <a href="definitions.html#message">Message</a></li>
+</ul>
+<h2 id="polydirectional"><a class="header" href="#polydirectional">Polydirectional</a></h2>
+<p>Type: a list of structures that have a <a href="definitions.html#sentiment">sentiment</a> field where at least two structures have a different sentiment sign (excluding zero)</p>
 <h2 id="event"><a class="header" href="#event">Event</a></h2>
 <p>Meaning: an update of the world state in precise format</p>
 <p>(incomplete)</p>
@@ -269,6 +284,25 @@
 <p>Filters:</p>
 <ul>
 <li>Must encode the influence on supply</li>
+</ul>
+<h2 id="trader"><a class="header" href="#trader">Trader</a></h2>
+<p>Type: a structure with the following fields:</p>
+<ul>
+<li>Activation count probability distribution (how many messages the trader needs to receive in order to trade according to the narrative)
+<ul>
+<li>Fields:
+<ul>
+<li>Form: log-normal</li>
+<li>Parameters
+<ul>
+<li>Mean</li>
+<li>Standard deviation</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 <h2 id="supply-1"><a class="header" href="#supply-1">Supply</a></h2>
 <p>Synonym of &quot;<a href="definitions.html#amount">Amount</a>&quot;.</p>
@@ -338,6 +372,8 @@
 </ul>
 <h2 id="message-spread"><a class="header" href="#message-spread">Message spread</a></h2>
 <p>Notes:</p>
+<h2 id="sentiment"><a class="header" href="#sentiment">Sentiment</a></h2>
+<p>Type: a floating point number in [-1; 1] range</p>
 <h2 id="sentiment-coherence"><a class="header" href="#sentiment-coherence">Sentiment coherence</a></h2>
 <p>Type: squared difference between sentiments of two messages</p>
 <h2 id="radioactivity"><a class="header" href="#radioactivity">Radioactivity</a></h2>
@@ -416,25 +452,10 @@ Basically, you're exchanging &quot;supply-at-rest&quot; (in your bank account) f
 <p>Inputs:</p>
 <ul>
 <li><a href="how-to-trade.html#world-model">World model</a> (skipping: it's easy to build a world model)</li>
-<li><a href="how-to-trade.html#human-policy">Human policy</a> (focusing)</li>
+<li><a href="how-to-trade.html#trader-policy">Trader policy</a> (focusing)</li>
 </ul>
 <p>Output: <a href="how-to-trade.html#trading-strategy">trading strategy</a></p>
 <p>Type: (native)</p>
-<p>Notes:</p>
-<ul>
-<li>People make decisions based on narratives</li>
-<li>Narratives are logical predicates
-<ul>
-<li>They may or may not be true (it doesn't matter: if people think the narrative is valid, or if they have an incentive to spread it, they will spread it)</li>
-</ul>
-</li>
-<li>Hypotheses:
-<ul>
-<li>A: We can predict people's actions from the narrative content</li>
-<li>B: We can predict people's actions from the narrative spread form</li>
-</ul>
-</li>
-</ul>
 <h3 id="get-trading-strategy-based-on-narrative-content"><a class="header" href="#get-trading-strategy-based-on-narrative-content">Get trading strategy based on narrative content</a></h3>
 <p>Notes:</p>
 <ul>
@@ -473,6 +494,56 @@ Basically, you're exchanging &quot;supply-at-rest&quot; (in your bank account) f
 </ul>
 </li>
 <li>Must be non-empty (there must exist a history such that the trading strategy outputs a non-empty list)</li>
+<li>Must protect from &quot;quiet market&quot;
+<ul>
+<li>Example
+<ul>
+<li>History
+<ul>
+<li>An original message with a &quot;strong&quot; positive narrative is posted</li>
+<li>We open a long position</li>
+<li>Other traders don't receive the message (e.g. they are subscribed but muted the notifications, or just dismissed the message)</li>
+<li>The price doesn't change much</li>
+<li>We should exit the long position</li>
+</ul>
+</li>
+<li>Notes
+<ul>
+<li>But BTCUSD price didn't move much after the COVID relief message
+<ul>
+<li>Maybe because BTCUSD traders weren't subscribed to Fed blog</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>&quot;Must make decisions before the trends are exhausted&quot;
+<ul>
+<li>Example (bad):
+<ul>
+<li>Trading strategy takes 10 days to make a decision</li>
+<li>The trend is over in 10 days</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Must work without errors if the list of events is <a href="definitions.html#polydirectional">polydirectional</a>
+<ul>
+<li>May return an empty list of trade plans</li>
+</ul>
+</li>
+</ul>
+<p>Sorters:</p>
+<ul>
+<li>Should open both long &amp; short positions</li>
+<li>Should divide sentiment by average sentiment
+<ul>
+<li>The average sentiment is above zero, so positive news don't receive as much of attention</li>
+</ul>
+</li>
 </ul>
 <p>Ideas:</p>
 <ul>
@@ -480,6 +551,28 @@ Basically, you're exchanging &quot;supply-at-rest&quot; (in your bank account) f
 <ul>
 <li>Calculate the &quot;balance price&quot; according to new supply data</li>
 <li>At every price higher than &quot;balance price&quot; sell some supply to maintain an equiprobable portfolio</li>
+</ul>
+</li>
+</ul>
+<p>Options:</p>
+<ul>
+<li>First draft</li>
+</ul>
+<h3 id="trading-strategy---first-draft"><a class="header" href="#trading-strategy---first-draft">Trading strategy - First draft</a></h3>
+<ul>
+<li>Get channels</li>
+<li>Get latest messages from channel</li>
+<li>Get <a href="definitions.html#sentinfo">sentinfos</a> from messages</li>
+<li>Get current form from sentinfos</li>
+<li>Get ideal form from ?</li>
+<li>If current form matches ideal form
+<ul>
+<li>Buy</li>
+</ul>
+</li>
+<li>(condition)
+<ul>
+<li>Sell</li>
 </ul>
 </li>
 </ul>
@@ -497,7 +590,7 @@ Basically, you're exchanging &quot;supply-at-rest&quot; (in your bank account) f
 </ul>
 </li>
 </ul>
-<h3 id="human-policy"><a class="header" href="#human-policy">Human policy</a></h3>
+<h3 id="trader-policy"><a class="header" href="#trader-policy">Trader policy</a></h3>
 <p>Options:</p>
 <ul>
 <li><a href="how-to-trade.html#whale-policy">Whale policy</a></li>
@@ -505,7 +598,24 @@ Basically, you're exchanging &quot;supply-at-rest&quot; (in your bank account) f
 <h3 id="whale-policy"><a class="header" href="#whale-policy">Whale policy</a></h3>
 <p>Type: function from state to list of pairs (action, probability)</p>
 <p>Thesis:</p>
-<p>Notes:</p>
+<p>Basic notes:</p>
+<ul>
+<li>People make decisions based on narratives</li>
+<li>Narratives are logical predicates
+<ul>
+<li>They may or may not be true (it doesn't matter: if people think the narrative is valid, or if they have an incentive to spread it, they will spread it)</li>
+</ul>
+</li>
+<li>Hypotheses:
+<ul>
+<li>A: We can predict people's actions from the narrative content</li>
+<li>B: We can predict people's actions from the narrative spread form</li>
+<li>C: A + B</li>
+</ul>
+</li>
+<li>Count of messages increases probability of trading the narrative</li>
+</ul>
+<p>Extra notes:</p>
 <ul>
 <li>Most humans have life-preserving instincts</li>
 <li>Most humans don't change their behavior if it is &quot;profitable&quot;</li>
@@ -524,6 +634,18 @@ Basically, you're exchanging &quot;supply-at-rest&quot; (in your bank account) f
 <li>People do it more abruptly: they continue trying multiple times, then stop doing it completely</li>
 </ul>
 </li>
+</ul>
+<p>Game-theoretic situation:</p>
+<ul>
+<li>(c : Channel) -&gt; (m : Message) -&gt; (a : Asset) -&gt; In c m -&gt; Positive m a -&gt; Influential c -&gt; /-- a game-theoretic situation where you have to buy before others --/
+<ul>
+<li>A large account sends a positive message about a specific asset</li>
+</ul>
+</li>
+</ul>
+<p>Inertia:</p>
+<ul>
+<li>Some people might decide to buy an asset proportionally over time from a fixed amount of messages</li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="the-big-short-analyzed"><a class="header" href="#the-big-short-analyzed">The Big Short, analyzed</a></h1>
 <p>Michael Burry created a new narrative: &quot;Buy credit default swaps on mortgage-backed securities because the borrowers won't be able to pay back the credits&quot;. His reasoning was simple:</p>
