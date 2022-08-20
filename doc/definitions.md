@@ -55,7 +55,12 @@ Notes:
 
 Meaning: an update of the world state in raw format
 
-Type: text (natural language)
+Type: structure with the following fields:
+
+* channel : [Channel](#channel)
+* text : string
+* image : string (base64-encoded)
+* timestamp : Date
 
 ## Derivative message
 
@@ -66,6 +71,18 @@ Meaning: [a message](#message) that has the same [info](#info) as the earlier me
 Meaning: the actual information extracted from a [message](#message)
 
 Important: info is equal to [event](#event) (we say that "messages describe events")
+
+## Sentinfo
+
+Type: a structure with the following fields:
+
+* asset : [Asset](#asset)
+* sentiment : [Sentiment](#sentiment)
+* message : [Message](#message)
+
+## Polydirectional
+
+Type: a list of structures that have a [sentiment](#sentiment) field where at least two structures have a different sentiment sign (excluding zero)
 
 ## Event
 
@@ -80,6 +97,17 @@ Options:
 Filters:
 
 * Must encode the influence on supply
+
+## Trader
+
+Type: a structure with the following fields:
+
+* Activation count probability distribution (how many messages the trader needs to receive in order to trade according to the narrative)
+  * Fields:
+    * Form: log-normal
+    * Parameters
+      * Mean
+      * Standard deviation
 
 ## Supply
 
@@ -154,6 +182,10 @@ Notes:
 ## Message spread
 
 Notes:
+
+## Sentiment
+
+Type: a floating point number in \[-1; 1\] range
 
 ## Sentiment coherence
 
