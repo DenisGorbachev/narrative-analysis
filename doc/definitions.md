@@ -9,8 +9,8 @@ Type: a list of [bags](#bag)
 Type: a structure with the following fields:
 
 * bags: List of [bags](#bag)
-* Proof of bags not being empty
-* Proof of bags being less than or equal to portfolio
+* proof of bags not being empty : NonEmpty bags
+* proof of bags being less than or equal to portfolio : bags <= portfolio
 
 ## Borrowable portfolio
 
@@ -29,9 +29,10 @@ Meaning: a source of [messages](#message)
 
 Type: a structure with the following fields:
 
-* Id
-* Url (optional)
+* network : Network
+* username : Username
 * Followers count (optional)
+* Name : String
 * Trade power: probability distribution of aggregate [borrowable portfolio](#borrowable-portfolio) (optional)
 * Share power: probability distribution of aggregate [channels](#channel) (optional)
   * Options
@@ -50,6 +51,57 @@ Notes:
 * Channels never push messages, only allow the user to pull the messages explicitly
   * When an app sends a push notification, we model it as "the app copies the message from its internal database into the user's phone database"
 * Channels may have different amount of traders with different margin preferences (represented by `Power` field)
+
+## Channel archetype
+
+* Blog
+* Forum
+* RSS feed
+* News aggregator feed
+* Social network feed
+* Social network channel
+* Social network group
+* Social network account
+* Social network direct
+
+## Channel type
+
+* 4chan
+* Email inbox
+* Bloomberg feed
+* Offline meeting
+* Lens protocol feed
+* Telegram group
+* Telegram channel
+* Telegram direct
+* Twitter account
+* Twitter feed
+* Twitter direct
+* Reddit subreddit
+* Reddit frontpage
+* Reddit direct
+* Facebook account
+* Facebook page
+* Facebook feed
+* Facebook direct
+* Instagram account
+* Instagram feed
+* Instagram direct
+* TikTok account
+* TikTok feed
+* TikTok direct
+* YouTube channel
+* YouTube feed
+* YouTube recommendations
+* Discord server
+* Discord channel
+* Discord direct
+* Medium publication
+* Medium account
+* TradingView feed
+* Stocktwits feed
+* Stocktwits account
+* Stocktwits direct
 
 ## Message
 
@@ -210,3 +262,35 @@ Examples:
 * Ethereum
 * Solana
 * Yearn
+
+## Pulsar
+
+Meaning: a person who **continuously** produces messages related to the same narrative.
+
+Notes:
+
+* (p : Pulsar) -> (n m : Narrative) -> (Variance n >= Variance m) -> (length (available_messages p n) >= length (available_messages p m))
+
+## VarianceS
+
+Type: structure with the following fields:
+
+* qv : [QuestionVariance](#QuestionVariance)
+* tv : [TopicVariance](#TopicVariance)
+* stv : [SocialTypeVariance](#SocialTypeVariance)
+
+## TopicVariance
+
+Meaning: count of topics raised by the message
+
+## QuestionVariance
+
+Meaning: count of questions raised by the message
+
+### SocialTypeVariance
+
+Meaning: count of sociotypes activated by the message
+
+### Balanceness
+
+Meaning: ?

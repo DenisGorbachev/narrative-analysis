@@ -13,6 +13,13 @@ Output: [trading strategy](#trading-strategy)
 
 Type: (native)
 
+Options:
+
+* Get trading strategy using theorem proving
+* Get trading strategy using data mining
+* Get trading strategy using reinforcement learning
+* Get trading strategy using a network of oracles
+
 ### Get trading strategy based on narrative content
 
 Notes:
@@ -33,6 +40,16 @@ Options:
     * Get the fundamental leaders of the most recent cycle
     * Wait until they fall below 80%
     * Buy
+
+### Get trading strategy using a network of oracles
+
+Notes:
+
+* Examples
+  * I knew that BNB will pump because I had a problem with ETH fees, and BNB was a good solution
+* Draft
+  * Build a network of people who "live in the future": have unusual problems & are looking for new solutions
+  * Every week: get a list of pairs of (problem, solution)
 
 ### Trading strategy
 
@@ -72,6 +89,7 @@ Ideas:
 * Exit:
   * Calculate the "balance price" according to new supply data
   * At every price higher than "balance price" sell some supply to maintain an equiprobable portfolio
+* Use [Pulsars](definitions.md#pulsar)
 
 Options:
 
@@ -106,7 +124,19 @@ Examples of parts of the world model:
 
 Options:
 
+* [Retail policy](#retail-policy)
 * [Whale policy](#whale-policy)
+* [Bot policy](#bot-policy)
+
+Notes:
+
+* Some traders are bots
+
+### Retail policy
+
+Notes:
+
+* Retail traders tend to use linear extrapolation
 
 ### Whale policy
 
@@ -147,3 +177,5 @@ Game-theoretic situation:
 Inertia:
 
 * Some people might decide to buy an asset proportionally over time from a fixed amount of messages
+
+## Bot policy
