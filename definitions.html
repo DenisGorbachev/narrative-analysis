@@ -156,8 +156,8 @@
 <p>Type: a structure with the following fields:</p>
 <ul>
 <li>bags: List of <a href="#bag">bags</a></li>
-<li>Proof of bags not being empty</li>
-<li>Proof of bags being less than or equal to portfolio</li>
+<li>proof of bags not being empty : NonEmpty bags</li>
+<li>proof of bags being less than or equal to portfolio : bags &lt;= portfolio</li>
 </ul>
 <h2 id="borrowable-portfolio"><a class="header" href="#borrowable-portfolio">Borrowable portfolio</a></h2>
 <p>Type: <a href="#portfolio">portfolio</a> that could be borrowed by locking an existing <a href="#portfolio-chunk">portfolio chunk</a></p>
@@ -171,9 +171,10 @@
 <p>Meaning: a source of <a href="#message">messages</a></p>
 <p>Type: a structure with the following fields:</p>
 <ul>
-<li>Id</li>
-<li>Url (optional)</li>
+<li>network : Network</li>
+<li>username : Username</li>
 <li>Followers count (optional)</li>
+<li>Name : String</li>
 <li>Trade power: probability distribution of aggregate <a href="#borrowable-portfolio">borrowable portfolio</a> (optional)</li>
 <li>Share power: probability distribution of aggregate <a href="#channel">channels</a> (optional)
 <ul>
@@ -201,6 +202,57 @@
 </ul>
 </li>
 <li>Channels may have different amount of traders with different margin preferences (represented by <code>Power</code> field)</li>
+</ul>
+<h2 id="channel-archetype"><a class="header" href="#channel-archetype">Channel archetype</a></h2>
+<ul>
+<li>Blog</li>
+<li>Forum</li>
+<li>RSS feed</li>
+<li>News aggregator feed</li>
+<li>Social network feed</li>
+<li>Social network channel</li>
+<li>Social network group</li>
+<li>Social network account</li>
+<li>Social network direct</li>
+</ul>
+<h2 id="channel-type"><a class="header" href="#channel-type">Channel type</a></h2>
+<ul>
+<li>4chan</li>
+<li>Email inbox</li>
+<li>Bloomberg feed</li>
+<li>Offline meeting</li>
+<li>Lens protocol feed</li>
+<li>Telegram group</li>
+<li>Telegram channel</li>
+<li>Telegram direct</li>
+<li>Twitter account</li>
+<li>Twitter feed</li>
+<li>Twitter direct</li>
+<li>Reddit subreddit</li>
+<li>Reddit frontpage</li>
+<li>Reddit direct</li>
+<li>Facebook account</li>
+<li>Facebook page</li>
+<li>Facebook feed</li>
+<li>Facebook direct</li>
+<li>Instagram account</li>
+<li>Instagram feed</li>
+<li>Instagram direct</li>
+<li>TikTok account</li>
+<li>TikTok feed</li>
+<li>TikTok direct</li>
+<li>YouTube channel</li>
+<li>YouTube feed</li>
+<li>YouTube recommendations</li>
+<li>Discord server</li>
+<li>Discord channel</li>
+<li>Discord direct</li>
+<li>Medium publication</li>
+<li>Medium account</li>
+<li>TradingView feed</li>
+<li>Stocktwits feed</li>
+<li>Stocktwits account</li>
+<li>Stocktwits direct</li>
 </ul>
 <h2 id="message"><a class="header" href="#message">Message</a></h2>
 <p>Meaning: an update of the world state in raw format</p>
@@ -340,6 +392,27 @@
 <li>Solana</li>
 <li>Yearn</li>
 </ul>
+<h2 id="pulsar"><a class="header" href="#pulsar">Pulsar</a></h2>
+<p>Meaning: a person who <strong>continuously</strong> produces messages related to the same narrative.</p>
+<p>Notes:</p>
+<ul>
+<li>(p : Pulsar) -&gt; (n m : Narrative) -&gt; (Variance n &gt;= Variance m) -&gt; (length (available_messages p n) &gt;= length (available_messages p m))</li>
+</ul>
+<h2 id="variances"><a class="header" href="#variances">VarianceS</a></h2>
+<p>Type: structure with the following fields:</p>
+<ul>
+<li>qv : <a href="#QuestionVariance">QuestionVariance</a></li>
+<li>tv : <a href="#TopicVariance">TopicVariance</a></li>
+<li>stv : <a href="#SocialTypeVariance">SocialTypeVariance</a></li>
+</ul>
+<h2 id="topicvariance"><a class="header" href="#topicvariance">TopicVariance</a></h2>
+<p>Meaning: count of topics raised by the message</p>
+<h2 id="questionvariance"><a class="header" href="#questionvariance">QuestionVariance</a></h2>
+<p>Meaning: count of questions raised by the message</p>
+<h3 id="socialtypevariance"><a class="header" href="#socialtypevariance">SocialTypeVariance</a></h3>
+<p>Meaning: count of sociotypes activated by the message</p>
+<h3 id="balanceness"><a class="header" href="#balanceness">Balanceness</a></h3>
+<p>Meaning: ?</p>
 
                     </main>
 

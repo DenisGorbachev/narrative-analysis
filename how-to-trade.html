@@ -159,6 +159,13 @@
 </ul>
 <p>Output: <a href="#trading-strategy">trading strategy</a></p>
 <p>Type: (native)</p>
+<p>Options:</p>
+<ul>
+<li>Get trading strategy using theorem proving</li>
+<li>Get trading strategy using data mining</li>
+<li>Get trading strategy using reinforcement learning</li>
+<li>Get trading strategy using a network of oracles</li>
+</ul>
 <h3 id="get-trading-strategy-based-on-narrative-content"><a class="header" href="#get-trading-strategy-based-on-narrative-content">Get trading strategy based on narrative content</a></h3>
 <p>Notes:</p>
 <ul>
@@ -184,6 +191,21 @@
 <li>Buy</li>
 </ul>
 </li>
+</ul>
+</li>
+</ul>
+<h3 id="get-trading-strategy-using-a-network-of-oracles"><a class="header" href="#get-trading-strategy-using-a-network-of-oracles">Get trading strategy using a network of oracles</a></h3>
+<p>Notes:</p>
+<ul>
+<li>Examples
+<ul>
+<li>I knew that BNB will pump because I had a problem with ETH fees, and BNB was a good solution</li>
+</ul>
+</li>
+<li>Draft
+<ul>
+<li>Build a network of people who &quot;live in the future&quot;: have unusual problems &amp; are looking for new solutions</li>
+<li>Every week: get a list of pairs of (problem, solution)</li>
 </ul>
 </li>
 </ul>
@@ -256,6 +278,7 @@
 <li>At every price higher than &quot;balance price&quot; sell some supply to maintain an equiprobable portfolio</li>
 </ul>
 </li>
+<li>Use <a href="definitions.html#pulsar">Pulsars</a></li>
 </ul>
 <p>Options:</p>
 <ul>
@@ -296,7 +319,18 @@
 <h3 id="trader-policy"><a class="header" href="#trader-policy">Trader policy</a></h3>
 <p>Options:</p>
 <ul>
+<li><a href="#retail-policy">Retail policy</a></li>
 <li><a href="#whale-policy">Whale policy</a></li>
+<li><a href="#bot-policy">Bot policy</a></li>
+</ul>
+<p>Notes:</p>
+<ul>
+<li>Some traders are bots</li>
+</ul>
+<h3 id="retail-policy"><a class="header" href="#retail-policy">Retail policy</a></h3>
+<p>Notes:</p>
+<ul>
+<li>Retail traders tend to use linear extrapolation</li>
 </ul>
 <h3 id="whale-policy"><a class="header" href="#whale-policy">Whale policy</a></h3>
 <p>Type: function from state to list of pairs (action, probability)</p>
@@ -350,6 +384,7 @@
 <ul>
 <li>Some people might decide to buy an asset proportionally over time from a fixed amount of messages</li>
 </ul>
+<h2 id="bot-policy"><a class="header" href="#bot-policy">Bot policy</a></h2>
 
                     </main>
 
