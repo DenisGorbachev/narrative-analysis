@@ -1,5 +1,7 @@
 # Definitions
 
+[Tree of Alpha origins - news trading](https://twitter.com/Tree_of_Alpha/status/1564012565675532289)
+
 ## Portfolio
 
 Type: a list of [bags](#bag)
@@ -30,9 +32,14 @@ Meaning: a source of [messages](#message)
 Type: a structure with the following fields:
 
 * network : Network
+* name : String
 * username : Username
-* Followers count (optional)
-* Name : String
+* followerCount : Nat
+* registeredAt : Date
+* owner : Option Person
+
+Projections:
+
 * Trade power: probability distribution of aggregate [borrowable portfolio](#borrowable-portfolio) (optional)
 * Share power: probability distribution of aggregate [channels](#channel) (optional)
   * Options
@@ -110,8 +117,8 @@ Meaning: an update of the world state in raw format
 Type: structure with the following fields:
 
 * channel : [Channel](#channel)
-* text : string
-* image : string (base64-encoded)
+* text : String
+* image : String (base64-encoded)
 * timestamp : Date
 
 ## Derivative message
@@ -135,6 +142,20 @@ Type: a structure with the following fields:
 ## Polydirectional
 
 Type: a list of structures that have a [sentiment](#sentiment) field where at least two structures have a different sentiment sign (excluding zero)
+
+## Person
+
+Type: a structure with the following fields:
+
+* name : Option Name -- sometimes we don't know the real name
+* contacts : List Contact
+
+## Contact
+
+Type: a structure with the following fields:
+
+* protocol : Protocol
+* value : String
 
 ## Event
 

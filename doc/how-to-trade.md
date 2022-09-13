@@ -15,10 +15,22 @@ Type: (native)
 
 Options:
 
-* Get trading strategy using theorem proving
+* [Get trading strategy using theorem proving](#get-trading-strategy-using-theorem-proving)
 * Get trading strategy using data mining
 * Get trading strategy using reinforcement learning
-* Get trading strategy using a network of oracles
+* [Get trading strategy using a network of oracles](#get-trading-strategy-using-a-network-of-oracles)
+
+Notes:
+
+* There is only one fundamental way of betting: to bet on continuation (bet on laws)
+  * Betting on changes is actually "betting on a specific reaction by market participants to a change", which is a form of betting on a continuation
+
+### Get trading strategy using theorem proving
+
+Options:
+
+* [Get trading strategy based on narrative content](#get-trading-strategy-based-on-narrative-content)
+* [Get trading strategy based on narrative spread form](#get-trading-strategy-based-on-narrative-spread-form)
 
 ### Get trading strategy based on narrative content
 
