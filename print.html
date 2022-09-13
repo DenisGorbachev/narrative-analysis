@@ -199,6 +199,7 @@
 <p>Note that &quot;max supply&quot; <em>can be changed</em>. For example, we assume that max supply of BTC is 21'000'000, but this is just a constant in the code. It <em>can be changed</em> by developers. We assume it is unlikely, and most people have the same opinion. But if it happens, it will lower the long-term max price of 1 BTC.</p>
 <p>Price is a ratio of two supplies (e.g. BTCUSD price = &quot;how much BTC was just exchanged for how much USD&quot;). Therefore, if one supply changes while the other supply stays constant, the price will change.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="definitions"><a class="header" href="#definitions">Definitions</a></h1>
+<p><a href="https://twitter.com/Tree_of_Alpha/status/1564012565675532289">Tree of Alpha origins - news trading</a></p>
 <h2 id="portfolio"><a class="header" href="#portfolio">Portfolio</a></h2>
 <p>Type: a list of <a href="definitions.html#bag">bags</a></p>
 <h2 id="portfolio-chunk"><a class="header" href="#portfolio-chunk">Portfolio chunk</a></h2>
@@ -221,9 +222,14 @@
 <p>Type: a structure with the following fields:</p>
 <ul>
 <li>network : Network</li>
+<li>name : String</li>
 <li>username : Username</li>
-<li>Followers count (optional)</li>
-<li>Name : String</li>
+<li>followerCount : Nat</li>
+<li>registeredAt : Date</li>
+<li>owner : Option Person</li>
+</ul>
+<p>Projections:</p>
+<ul>
 <li>Trade power: probability distribution of aggregate <a href="definitions.html#borrowable-portfolio">borrowable portfolio</a> (optional)</li>
 <li>Share power: probability distribution of aggregate <a href="definitions.html#channel">channels</a> (optional)
 <ul>
@@ -308,8 +314,8 @@
 <p>Type: structure with the following fields:</p>
 <ul>
 <li>channel : <a href="definitions.html#channel">Channel</a></li>
-<li>text : string</li>
-<li>image : string (base64-encoded)</li>
+<li>text : String</li>
+<li>image : String (base64-encoded)</li>
 <li>timestamp : Date</li>
 </ul>
 <h2 id="derivative-message"><a class="header" href="#derivative-message">Derivative message</a></h2>
@@ -326,6 +332,18 @@
 </ul>
 <h2 id="polydirectional"><a class="header" href="#polydirectional">Polydirectional</a></h2>
 <p>Type: a list of structures that have a <a href="definitions.html#sentiment">sentiment</a> field where at least two structures have a different sentiment sign (excluding zero)</p>
+<h2 id="person"><a class="header" href="#person">Person</a></h2>
+<p>Type: a structure with the following fields:</p>
+<ul>
+<li>name : Option Name -- sometimes we don't know the real name</li>
+<li>contacts : List Contact</li>
+</ul>
+<h2 id="contact"><a class="header" href="#contact">Contact</a></h2>
+<p>Type: a structure with the following fields:</p>
+<ul>
+<li>protocol : Protocol</li>
+<li>value : String</li>
+</ul>
 <h2 id="event"><a class="header" href="#event">Event</a></h2>
 <p>Meaning: an update of the world state in precise format</p>
 <p>(incomplete)</p>
@@ -531,10 +549,24 @@ Basically, you're exchanging &quot;supply-at-rest&quot; (in your bank account) f
 <p>Type: (native)</p>
 <p>Options:</p>
 <ul>
-<li>Get trading strategy using theorem proving</li>
+<li><a href="how-to-trade.html#get-trading-strategy-using-theorem-proving">Get trading strategy using theorem proving</a></li>
 <li>Get trading strategy using data mining</li>
 <li>Get trading strategy using reinforcement learning</li>
-<li>Get trading strategy using a network of oracles</li>
+<li><a href="how-to-trade.html#get-trading-strategy-using-a-network-of-oracles">Get trading strategy using a network of oracles</a></li>
+</ul>
+<p>Notes:</p>
+<ul>
+<li>There is only one fundamental way of betting: to bet on continuation (bet on laws)
+<ul>
+<li>Betting on changes is actually &quot;betting on a specific reaction by market participants to a change&quot;, which is a form of betting on a continuation</li>
+</ul>
+</li>
+</ul>
+<h3 id="get-trading-strategy-using-theorem-proving"><a class="header" href="#get-trading-strategy-using-theorem-proving">Get trading strategy using theorem proving</a></h3>
+<p>Options:</p>
+<ul>
+<li><a href="how-to-trade.html#get-trading-strategy-based-on-narrative-content">Get trading strategy based on narrative content</a></li>
+<li><a href="how-to-trade.html#get-trading-strategy-based-on-narrative-spread-form">Get trading strategy based on narrative spread form</a></li>
 </ul>
 <h3 id="get-trading-strategy-based-on-narrative-content"><a class="header" href="#get-trading-strategy-based-on-narrative-content">Get trading strategy based on narrative content</a></h3>
 <p>Notes:</p>
